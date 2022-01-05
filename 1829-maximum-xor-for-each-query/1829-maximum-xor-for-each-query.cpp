@@ -6,7 +6,8 @@ public:
         int value=(1<<(maximumBit))-1;
         for(int i=0;i<n;i++)
         {
-            ans[n-i-1]=value^=nums[i];
+            value^=nums[i];
+            ans[n-i-1]=value;
         }
         return ans;
           
