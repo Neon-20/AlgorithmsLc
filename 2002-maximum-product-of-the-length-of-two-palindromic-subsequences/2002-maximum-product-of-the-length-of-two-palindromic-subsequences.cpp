@@ -1,5 +1,9 @@
 class Solution {
     public:
+    
+#pragma GCC optimize("Ofast")
+#pragma GCC target("avx,avx2,fma")
+ 
     bool isP(string &s)
     {
         int i=0;
