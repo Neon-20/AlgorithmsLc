@@ -1,7 +1,7 @@
 class Solution {
 public:
     int rangeBitwiseAnd(int m, int n) {
-        //Find out the and of all numbers in the range
+        //Find out all numbers in the range
         // Logic behind this is
         // If we shift any number towards right and try to make it 1
         // We can do the same with l and r range
