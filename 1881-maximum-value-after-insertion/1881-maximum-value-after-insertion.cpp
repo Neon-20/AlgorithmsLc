@@ -2,7 +2,7 @@ class Solution {
 public:
     string maxValue(string s, int x) {
         int n=s.size()-1;
-        int ans=1+n;
+        int ans=n+1;
         //maximum value of n after insertion would be something like this
         if(s[0] == '-')
         {
