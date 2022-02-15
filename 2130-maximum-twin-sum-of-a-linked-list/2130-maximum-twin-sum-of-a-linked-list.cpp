@@ -12,8 +12,11 @@
 class Solution {
 public:
     int pairSum(ListNode* head) {
-        vector<int> v;
-       while(head!=NULL)
+        // Two pointer approach
+        
+    // So
+        vector<int>v;
+        while(head!=NULL)
         {
             v.push_back(head->val);
             head=head->next;
@@ -23,8 +26,9 @@ public:
         int ans=0;
         while(i<j)
         {
-            ans=max(v[i]+v[j],ans);
-            i++;j--;
+            ans=max(ans,v[i]+v[j]);
+            i++;
+            j--;
         }
         return ans;
     }
