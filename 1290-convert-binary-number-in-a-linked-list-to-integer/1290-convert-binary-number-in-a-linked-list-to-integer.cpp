@@ -16,13 +16,14 @@ class Solution {
 public:
     int getDecimalValue(ListNode* head) {
      vector<int> ans;
-        int cnt=0;
         while(head!=NULL)
         {
             ans.push_back(head->val);
             head=head->next;
         }
-        reverse(begin(ans),end(ans));
+        int cnt=0;
+        // so answer now is ans=101
+        reverse(ans.begin(),ans.end());
         for(int i=0;i<ans.size();i++)
         {
             cnt+=ans[i]*(1<<i);
