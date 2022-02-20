@@ -2,19 +2,33 @@ class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
         int n=nums.size();
-        map<int,int> mp;
-        for(auto &x:nums)
+        // Using xor how to do it
+       // So 2 elements appear once only
+        int x=0;
+        for(auto &it:nums)
         {
-            mp[x]++;// 1 
+            x^=it;
         }
-        vector<int> ans;
-        for(auto &x:mp)
+        int idx;
+        // Find the bit where two numbers differ 
+        for(int i=0;i<32;i++)
         {
-            if(x.second == 1)
+            if(x&(1<<i))
             {
-                ans.push_back(x.first);
+                idx=i;break;
             }
         }
-        return ans;
+        int first=0;
+        //Find the first number 
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]&(1<<idx))
+            {
+                first^=nums[i];
+            }
+        }
+        int second=first^x;
+        return {first,second};
+        
     }
 };
