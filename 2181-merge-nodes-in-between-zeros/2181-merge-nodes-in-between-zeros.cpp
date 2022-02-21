@@ -16,6 +16,7 @@ public:
         ListNode* tail=&dummy;
         while(head!=NULL)
         {
+            
             if(head->val == 0) head=head->next;
             if(!head) break;
             int sum=0;
