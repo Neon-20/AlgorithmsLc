@@ -15,8 +15,8 @@ public:
     // Floyds cycle detection
     
     bool isHappy(int n) {
-     int t=n;
-        int r=getsum(n);
+     int t=getsum(n);
+        int r=getsum(getsum(n));
         while(t!=r)
         {
             t=getsum(t);
