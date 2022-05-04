@@ -2,15 +2,17 @@ class Solution {
 public:
     // const int nax=1e5+5;
     int findDuplicate(vector<int>& nums) {
-       bitset<100005> b(0);
-        for(auto x:nums){
-            if(b[x] == 0){
-                b[x]=1;
+      sort(nums.begin(),nums.end());
+        bool ok=false;
+        int ans;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i] == nums[i+1]){
+                ok=true;
+                ans=nums[i];
+                break;
             }
-            else{
-                return x;
-            }
-        }
-        return -1;
+         }
+          if(ok) return ans;
+        else return -1;
     }
 };
