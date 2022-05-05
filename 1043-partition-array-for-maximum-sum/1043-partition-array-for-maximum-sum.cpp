@@ -1,19 +1,22 @@
 class Solution {
 public:
+    int recur(vector<int> &dp,vector<int> &arr,int start,int k){
+        int n=arr.size();
+        if(start>=n) return 0;
+        if(dp[start]!=-1) return dp[start];
+        int local=0;
+        int global=0;
+        for(int i=start;i<min(n,start+k);i++){
+            local=max(local,arr[i]);
+            global=max(global,local*(i-start+1)+recur(dp,arr,i+1,k));
+        }
+        dp[start]=global;
+        return global;
+    }
     int maxSumAfterPartitioning(vector<int>& arr, int k) {
        int n=arr.size();
         // max sum after partitioning the array
-        long long ans=0;
-        vector<int> dp(n+1);
-        for(int i=1;i<=n;i++){
-            int current=0;
-            int best=0;
-            for(int j=1;j<=k and i-j>=0;j++){
-                current=max(current,arr[i-j]);
-                best=max(best,dp[i-j]+current*j);
-            }
-            dp[i]=best;
-        }
-        return dp[n];
+        vector<int> dp(n,-1);
+        return recur(dp,arr,0,k);
     }
 };
