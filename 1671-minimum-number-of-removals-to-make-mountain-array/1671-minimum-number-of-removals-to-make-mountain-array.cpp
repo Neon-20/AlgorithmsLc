@@ -1,32 +1,30 @@
 class Solution {
 public:
-    
-
     int minimumMountainRemovals(vector<int>& nums) {
         int n=nums.size();
-        // Lis from left side
-       vector<int> lisleft(n,1);
-       vector<int> lisright(n,1);
-        for(int i=1;i<n;i++){
-            for(int j=0;j<i;j++){
-                if(nums[i]>nums[j]){
-                    lisleft[i]=max(lisleft[i],lisleft[j]+1);
-                }
-            }
-        }
-        for(int i=n-2;i>=0;i--){
-            for(int j=n-1;j>=i;j--){
-                if(nums[i]>nums[j]){
-                    lisright[i]=max(lisright[i],lisright[j]+1);
-                }
-            }
-        }
-        int ans=0;
+        vector<int> a(n);
+        vector<int> b(n);
+        vector<int> v;
         for(int i=0;i<n;i++){
-           if(lisleft[i]>1 and lisright[i]>1)
-               ans=max(ans,lisleft[i]+lisright[i]-1);
+            int x=nums[i];
+            auto it=lower_bound(begin(v),end(v),x);
+            a[i]=it-begin(v);
+            if(it!=end(v)) *it=x;
+            else v.push_back(x);
         }
-        return n-ans;
-        
+        v.clear();
+        for(int i=n-1;i>=0;i--){
+            int x=nums[i];
+            auto it=lower_bound(begin(v),end(v),x);
+            b[i]=it-begin(v);
+            if(it!=end(v)) *it=x;
+            else v.push_back(x);
+        }
+        int ans=n;
+        for(int i=1;i<n;i++){
+            if(a[i] and b[i])
+                ans=min(ans,n-(a[i]+1+b[i]));
+        }
+        return ans;
     }
 };
