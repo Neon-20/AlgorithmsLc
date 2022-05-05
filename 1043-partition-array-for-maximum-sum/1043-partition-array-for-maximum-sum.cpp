@@ -16,7 +16,7 @@ public:
     int maxSumAfterPartitioning(vector<int>& arr, int k) {
        int n=arr.size();
         // max sum after partitioning the array
-        vector<int> dp(n,-1);
+        vector<int> dp(n+1,-1);
         return recur(dp,arr,0,k);
     }
 };
