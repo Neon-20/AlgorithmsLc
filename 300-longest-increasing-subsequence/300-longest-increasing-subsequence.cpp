@@ -4,7 +4,7 @@ public:
        //using O(nlogn) technique
         vector<int>ans;
         for(auto x:nums){
-            if(ans.empty() or ans[ans.size()-1] < x)
+            if(ans.empty() or ans.back() < x)
             {
                 ans.push_back(x);
             }
