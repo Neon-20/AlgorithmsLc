@@ -2,21 +2,13 @@ class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& nums) {
         int n=nums.size();
-        vector<int> ans(n);
-        //variation of next greater element problem
-        stack<pair<int,int>> st;
+        vector<int> ans(n,0);
+        stack<int> st;
         for(int i=n-1;i>=0;i--){
-            while(!st.empty() and st.top().first<=nums[i])
-            {
+            while(!st.empty() and nums[st.top()]<=nums[i])
                 st.pop();
-            }
-            if(st.empty()) {
-                ans[i]=0;
-            }
-            else {
-                ans[i]=st.top().second-i;
-            }
-            st.push({nums[i],i});
+            if(!st.empty()) ans[i]=st.top()-i;
+            st.push(i);
         }
         return ans;
     }
