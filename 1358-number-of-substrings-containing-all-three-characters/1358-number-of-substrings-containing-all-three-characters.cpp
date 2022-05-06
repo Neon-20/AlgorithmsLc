@@ -3,11 +3,15 @@ public:
     int numberOfSubstrings(string s) {
         int n=s.size();
         //Number of substrings containing all three characters
-         vector<int> ans(3,-1);
+        //sliding window
+        vector<int> cnt(3,0);
         int res=0;
-        for(int i=0;i<n;i++){
-            ans[s[i]-'a']=i;
-            res+=1+min({ans[0],ans[1],ans[2]});
+        int i=0;
+        for(int j=0;j<n;j++){
+              ++cnt[s[j]-'a'];
+            while(cnt[0]>0 and cnt[1]>0 and cnt[2]>0)
+                --cnt[s[i++]-'a'];
+            res+=i;
         }
         return res;
         
