@@ -4,7 +4,7 @@ public:
         //number of nice subarrays
         // just mod it by 2 
         int n=nums.size();
-        map<int,int> mp;
+        unordered_map<int,int> mp;
         for(int i=0;i<nums.size();i++){
             nums[i]%=2;
         }
