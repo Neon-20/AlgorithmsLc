@@ -6,7 +6,9 @@ public:
         int high=n-1;
         while(low<high){
             int mid=low+(high-low+1)/2;
-            if(nums[mid]>target) high=mid-1;
+            if(nums[mid]>target){
+                high=mid-1;
+            }
             else low=mid;
         }
         return nums[low]==target?low:-1;
