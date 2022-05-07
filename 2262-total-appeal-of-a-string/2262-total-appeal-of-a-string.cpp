@@ -6,7 +6,7 @@ public:
         int cnt[26]={0};
         long long ans=0;
         int n=s.length();
-        for(int i=0;i<s.size();i++){
+        for(int i=0;i<n;i++){
             ans+=(i+1-cnt[s[i]-'a'])*(n-i);
             cnt[s[i]-'a']=i+1;
         }
