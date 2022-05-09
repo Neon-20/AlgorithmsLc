@@ -1,22 +1,23 @@
 class Solution {
 public:
-    vector<string> letterCombinations(string digits) {
-        //return all possible combinations
-        //in other question it was ro find total number of combinations
-        //2 to 9
-        // An iterative approach would be
-        vector<string> ans;
-        string given[10]={"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-        ans.push_back("");
-         if(digits.empty()) return {};
-        for(int i=0;i<digits.size();i++){
-            vector<string> temp;
-            string chars=given[digits[i]-'0'];
-            for(int i=0;i<chars.size();i++)
-                for(int j=0;j<ans.size();j++)
-                    temp.push_back(ans[j]+chars[i]);
-            ans=temp;
+    vector<string> mappings = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}, ans;
+
+    void recur(string &s,int index,string comb){
+       if(index == s.size()){
+         ans.push_back(comb);
+           return;
+       }
+        for(auto x:mappings[s[index]-'2']){
+            comb.push_back(x);
+            recur(s,index+1,comb);
+            comb.pop_back();
         }
+    }
+    vector<string> letterCombinations(string digits) {
+        int n=digits.size();
+        if(digits == "") return ans;
+        string combinations="";
+        recur(digits,0,combinations);
         return ans;
     }
 };
