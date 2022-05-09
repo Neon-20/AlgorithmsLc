@@ -1,21 +1,17 @@
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& numbers, int target) {
-        int n=numbers.size();
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n=nums.size();
         //We can use 2 pointers here array is sorted already
-        int left=0;
-        int right=n-1;
-        while(left<right){
-            if(numbers[left]+numbers[right]==target){
-                return{left+1,right+1};
+        map<int,int> mp;
+        vector<int> v;
+        for(int i=0;i<n;i++){
+            if(mp.count(target-nums[i])){
+                v.push_back(mp[target-nums[i]]+1);
+                v.push_back(i+1);
             }
-            else if(numbers[left]+numbers[right]>target){
-                right--;
-            }
-            else{
-                left++;
-            }
+            mp[nums[i]]=i;
         }
-        return {};
+        return v;
     }
 };
