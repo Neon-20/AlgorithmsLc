@@ -11,7 +11,9 @@ public:
                 ans.push_back(i);
                 break;
             }
-            mp[nums[i]]=i;
+            else{
+                mp[nums[i]]=i;
+            }
         }
         return ans;
     }
