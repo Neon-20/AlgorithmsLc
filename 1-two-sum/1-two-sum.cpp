@@ -9,6 +9,7 @@ public:
             if(mp.find(target-nums[i])!=mp.end()){//already present
                 ans.push_back(mp[target-nums[i]]);
                 ans.push_back(i);
+                break;
             }
             mp[nums[i]]=i;
         }
