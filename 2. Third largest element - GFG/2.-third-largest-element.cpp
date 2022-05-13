@@ -7,7 +7,7 @@ class Solution{
   public:
     int thirdLargest(int a[], int n)
     {
-        int first=a[0];
+        int first=-1;
         int second=-1;
         int last=-1;
         for(int i=0;i<n;i++){
