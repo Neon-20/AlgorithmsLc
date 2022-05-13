@@ -1,14 +1,15 @@
 class Solution {
 public:
+    int recur(vector<int> &dp,int index,vector<int> &nums){
+        if(index>=nums.size()) return 0;
+        if(dp[index]!=-1) return dp[index];
+        else
+    dp[index]=max(recur(dp,index+1,nums),nums[index]+recur(dp,index+2,nums));
+return dp[index];
+}
     int rob(vector<int>& nums) {
         int n=nums.size();
-       int prev1=0;
-        int prev2=0;
-        for(int i=0;i<n;i++){
-            int temp=prev1;
-            prev1=max(prev2+nums[i],prev1);
-            prev2=temp;
-        }
-        return prev1;
+        vector<int> dp(n+1,-1);
+        return recur(dp,0,nums);
     }
 };
