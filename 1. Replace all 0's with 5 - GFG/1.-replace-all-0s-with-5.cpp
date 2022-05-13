@@ -23,11 +23,12 @@ int convertFive(int n) {
     while(n>0){
         int var=n%10;
         if(var == 0){
-            var=5;
+            var=5;//1554
         }
+        //
         //Create a number 
-        number=number+var*res;//
-        res=res*10;
+        number=number+var*res;//number=4
+        res=res*10;// res=10
         n/=10;
     }
     return number;
