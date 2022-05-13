@@ -7,9 +7,19 @@ class Solution{
   public:
     int thirdLargest(int a[], int n)
     {
-        sort(a,a+n);
-        return a[n-3];
-        
+        int first=a[0];
+        int second=-1;
+        int last=-1;
+        for(int i=0;i<n;i++){
+            if(a[i]>first) first=a[i];
+        }
+        for(int i=0;i<n;i++){
+            if(a[i]>second and a[i]<first) second=a[i];
+        }
+        for(int i=0;i<n;i++){
+            if(a[i]>last and a[i]<second) last=a[i];
+        }
+        return last;
     }
 
 };
