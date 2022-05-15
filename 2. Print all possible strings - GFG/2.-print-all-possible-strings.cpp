@@ -25,30 +25,21 @@ int main()
 
 /*You have to complete this function*/
 
-void recur(string input,string output,vector<string> &res){
-    if(input.length()==0){
-        res.push_back(output);
+void recur(char str[],string s,int index,int n,vector<string> &res){
+    if(index == n){
+        res.push_back(s);
         return;
     }
-    string op1=output;
-    string op=output;
-    op1.push_back(input[0]);
-    op.push_back(' ');
-    op.push_back(input[0]);
-    input.erase(input.begin()+0);
-    recur(input,op1,res);
-    recur(input,op,res);
-    return;
+    s.push_back(str[index]);
+    recur(str,s,index+1,n,res);
+    if(index+1<n)
+     recur(str,s+" ",index+1,n,res);
 }
 vector<string>  spaceString(char str[])
 {
-    vector<string> res;
- string input="";
- string output="";
- input=str;
- output.push_back(str[0]);
- input.erase(input.begin()+0);
- recur(input,output,res);
- return res;
+  vector<string> res;
+  int n=strlen(str);
+  recur(str,"",0,n,res);
+  return res;
  
 }
