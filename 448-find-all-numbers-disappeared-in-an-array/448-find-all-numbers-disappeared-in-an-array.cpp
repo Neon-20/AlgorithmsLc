@@ -1,16 +1,17 @@
 class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
-        vector<int> ans;
-        int n=nums.size();
-        set<int> s(nums.begin(),nums.end());// 1 2 3 4 7 8
-        for(int i=1;i<=n;i++){
-            if(s.count(i)==false){// s.count means to check whther a
-                // particular element exist or nt in set
-                ans.push_back(i);
-            }
+       //USING MAP
+          vector<int>ans;
+        int x=1;
+        map<int,int>mp;
+        for(auto s:nums){
+            mp[s]++;
         }
-        return ans;
-     
+        for(auto s:nums){
+            if(mp[x]==0) ans.push_back(x);
+            x++;
+        }
+         return ans;
     }
 };
