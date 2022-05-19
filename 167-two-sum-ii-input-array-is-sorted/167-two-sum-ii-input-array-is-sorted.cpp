@@ -6,7 +6,7 @@ public:
         map<int,int> mp;
         vector<int> v;
         for(int i=0;i<n;i++){
-            if(mp.count(target-nums[i])){
+            if(mp.find(target-nums[i])!=mp.end()){
                 v.push_back(mp[target-nums[i]]+1);
                 v.push_back(i+1);
             }
