@@ -1,22 +1,20 @@
 class Solution {
 public:
-    int dp[105][105];
-    int recur(int i,int j,vector<vector<int>> &nums){
-       int n=nums.size();
-       int m=nums[0].size();
-       if(i>=n or j>=m) return 0;
-       if(nums[i][j]==1) return 0;
-    if(i==n-1 and j==m-1) return 1;
-        if(dp[i][j]!=-1) return dp[i][j];
-        int ans=0;
-        ans+=recur(i+1,j,nums)+recur(i,j+1,nums);
-        return dp[i][j]=ans;
-        return ans;
-    }
+  
+    
     int uniquePathsWithObstacles(vector<vector<int>>& nums) {
-       //Wherever obstacle then dont go there
-        memset(dp,-1,sizeof(dp));
-        return recur(0,0,nums);
-        //aage se last tak;
+      
+        int n=nums.size();
+        int m=nums[0].size();
+        vector<vector<int>> dp(n+1,vector<int>(m+1,0));
+        dp[0][1]=1;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(nums[i-1][j-1]!=1){
+                    dp[i][j]+=dp[i-1][j]+dp[i][j-1];
+                }
+            }
+        }
+        return dp[n][m];
     }
 };
