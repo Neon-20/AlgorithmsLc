@@ -1,22 +1,17 @@
 class Solution {
 public:
-    // const int mod=1e9+7;
-    // void add(int &p,int x){
-    //     p+=x;
-    //     if(p>=mod) p-=mod;
-    // }
-    int recur(vector<vector<int>> &dp,int m,int n){
-        if(n == 0 and m == 0) return 1;
-        if(dp[m][n]!=-1) return dp[m][n];
-        int ans=0;
-        if(m>0) ans+=recur(dp,m-1,n);
-        if(n>0) ans+=recur(dp,m,n-1);
-        dp[m][n]=ans;
-        return ans;
-    }
+  
+  
     int uniquePaths(int m, int n) {
-        // possible unique paths to be taken by robot would be 
-        vector<vector<int>> dp(m,vector<int>(n,-1));
-        return recur(dp,m-1,n-1);
+        vector<vector<int>> dp(m+1,vector<int>(n+1,0));
+        m--;n--;
+        dp[0][0]=1;
+        for(int i=0;i<m+1;i++){
+            for(int j=0;j<n+1;j++){
+                if(i-1>=0) dp[i][j]+=dp[i-1][j];
+                if(j-1>=0) dp[i][j]+=dp[i][j-1];
+            }
+        }
+        return dp[m][n];
     }
 };
