@@ -10,9 +10,9 @@ public:
         }
         sort(begin(ans),end(ans));//sort and make equal to the mid element
         int res=0;
-        int n=size(grid);
+        int n=size(grid);// 1 2 3 5
         int m=size(grid[0]);
-        int target=ans[m*n/2];
+        int target=ans[m*n/2];//median of the array is target
         for(int i=0;i<m*n;i++){
             if(abs(ans[i]-target)%x!=0) return -1;
             else  res+=abs(ans[i]-target)/x;
