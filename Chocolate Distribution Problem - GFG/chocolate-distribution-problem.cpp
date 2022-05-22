@@ -6,16 +6,13 @@ using namespace std;
 class Solution{
     public:
     long long findMinDiff(vector<long long> a, long long n, long long m){
-    sort(begin(a),end(a));
-   //We dont give a fuck about middle elements 
-   //just we give a fuck about the last and first element
-   int mn=INT_MAX;
+   sort(begin(a),end(a));
+   int ans=INT_MAX;
    for(int i=0;i+m-1<n;i++){
-       int difference=a[i+m-1]-a[i];
-       if(mn>difference) mn=difference;
+      int difference=a[i+m-1]-a[i];
+      ans=min(ans,difference);
    }
-   return mn;
-   
+   return ans;
     
     }   
 };
