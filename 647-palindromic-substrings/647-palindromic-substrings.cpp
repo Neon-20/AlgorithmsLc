@@ -9,16 +9,15 @@ public:
     return true;
 }
     int countSubstrings(string s) {
-        int n=s.size();
-        int cnt=0;
-        for(int i=0;i<n;i++){
-            string ans="";
-            for(int j=i;j<n;j++){
-                ans+=s[j];
-                if(pallindrome(ans))
-                    cnt++;
-            }
+        int begin,end;
+        int ans=0;
+        for(int i = 0; i < s.size(); i++) {
+            begin = i, end = i;
+            while(begin >= 0 && end<s.size() && s[begin--]==s[end++]) ans++;
+            begin = i - 1, end = i;
+            while(begin >= 0 && end<s.size() && s[begin--]==s[end++]) ans++;
         }
-        return cnt;
+        
+        return ans;
     }
 };
