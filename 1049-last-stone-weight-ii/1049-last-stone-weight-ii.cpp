@@ -1,6 +1,8 @@
 class Solution {
 public:
     int dp[35][5050];//denoting i and sum dp[i][sum]
+    //just minimise the subarray sum difference
+    //like s/2 and s/2 
     int solve(vector<int> &stones,int idx,int add,int sum,int n){
         if(idx>=n) return abs(sum-add);
         if(dp[idx][sum]!=-1) return dp[idx][sum];
