@@ -1,17 +1,16 @@
 class Solution {
 public:
     int subarraysDivByK(vector<int>& nums, int k) {
-        int n=size(nums);
-        //sum divisble by k;
-        // so just use prefix values i guess
+      int n=size(nums);
         map<int,int> mp;
+        // cnt the frequency of the prefix sums
+        int ans=0;
         int sum=0;
         mp[0]=1;
-        int ans=0;
         for(int i=0;i<n;i++){
-            sum+=nums[i];
+            sum+=nums[i];//prefix sums
             int remainder=sum%k;
-            if(remainder<0) remainder+=k;
+            if(remainder<0) remainder+=k;//-1 mod 5
             if(mp.count(remainder)){
                 ans+=mp[remainder];
             }
