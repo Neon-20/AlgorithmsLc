@@ -3,14 +3,13 @@ public:
     int subarraysDivByK(vector<int>& nums, int k) {
       int n=size(nums);
         map<int,int> mp;
-        // cnt the frequency of the prefix sums
-        int ans=0;
-        int sum=0;
+       int ans=0;
         mp[0]=1;
+        int sum=0;
         for(int i=0;i<n;i++){
-            sum+=nums[i];//prefix sums
+            sum+=nums[i];
             int remainder=sum%k;
-            if(remainder<0) remainder+=k;//-1 mod 5
+            if(remainder<0) remainder+=k;
             if(mp.count(remainder)){
                 ans+=mp[remainder];
             }
