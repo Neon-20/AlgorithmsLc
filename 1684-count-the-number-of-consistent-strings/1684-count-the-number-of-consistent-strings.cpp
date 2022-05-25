@@ -1,18 +1,18 @@
 class Solution {
 public:
     int countConsistentStrings(string allowed, vector<string>& words) {
-  int ok=0;
+     int n=size(words);
         int ans=0;
         for(auto x:words){
-            ok=0;
-            for(int i=0;i<x.length();i++){
-                if(allowed.find(x[i]) == string::npos)
-                {
-                   ok=1;
+            bool ok=0;
+            for(auto it:x){
+                if(allowed.find(it) == string::npos){
+                    ok=1;
+                    // ans++;
                 }
             }
-            if(ok) ans++;
+            if(ok)ans++;
         }
-        return words.size()-ans;
+        return n-ans;
     }
 };
