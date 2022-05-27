@@ -4,14 +4,13 @@ public:
      int n=size(words);
         int ans=0;
         for(auto x:words){
-            bool ok=0;
+            bool flag=false;
             for(auto it:x){
                 if(allowed.find(it) == string::npos){
-                    ok=1;
-                    // ans++;
+                    flag =true;
                 }
             }
-            if(ok)ans++;
+            if(flag)ans++;
         }
         return n-ans;
     }
