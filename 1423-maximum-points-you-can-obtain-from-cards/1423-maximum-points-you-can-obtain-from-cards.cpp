@@ -8,7 +8,8 @@ public:
         for(int i=n-k;i<n;i++){
             ans+=nums[i];
         }
-        for(int i=0,sum=ans;i<k;i++){
+         sum=ans;
+        for(int i=0;i<k;i++){
             sum-=nums[n-k+i];
           sum+=nums[i];
             ans=max(ans,sum);
