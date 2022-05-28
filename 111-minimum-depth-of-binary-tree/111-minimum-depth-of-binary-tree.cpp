@@ -12,16 +12,24 @@
 class Solution {
 public:
     int minDepth(TreeNode* root) {
-      //Bfs works better here as solution
-        if(root == nullptr) return 0;
-         if(root->left == nullptr and root->right!=nullptr){
-           return 1+minDepth(root->right); 
+      if(root == nullptr) return 0;
+        
+       queue<TreeNode*> q;
+        int ans=0;
+        q.push(root);
+        while(!q.empty()){
+            int breadth=q.size();
+            ans++;
+            for(int i=0;i<breadth;i++){
+                TreeNode* parent=q.front();
+                q.pop();
+            
+            if(parent->left) q.push(parent->left);
+            if(parent->right) q.push(parent->right);
+            if(parent->left==NULL and parent->right==NULL)
+                return ans;
+            }
         }
-       else if(root->right == nullptr and root->left!=nullptr){
-           return 1+minDepth(root->left); 
-        }
-       else{
-           return 1+min(minDepth(root->left),minDepth(root->right));
-       }
+        return ans;
     }
 };
