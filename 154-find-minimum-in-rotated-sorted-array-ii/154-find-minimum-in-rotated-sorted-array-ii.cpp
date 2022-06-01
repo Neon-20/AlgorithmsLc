@@ -2,10 +2,9 @@ class Solution {
 public:
     int findMin(vector<int>& nums) {
        int n = size(nums);
-        //In rotated sorted array find the expectations
-        //return the min element in the array
-      int left=0;
-        int right=size(nums)-1;
+// Finding min with value as min and repeated elements
+        int left=0;
+        int right=n-1;
         while(left<right){
             int mid=left+(right-left)/2;
             if(nums[mid]>nums[right]){
@@ -14,9 +13,7 @@ public:
             else if(nums[mid]<nums[right]){
                 right=mid;
             }
-            else{
-                right--;
-            }
+            else right--;
         }
         return nums[left];
     }
