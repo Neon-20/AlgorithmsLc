@@ -1,16 +1,12 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-int n=size(nums);  
-   map<int,int> mp;
-        for(int x:nums){
-            mp[x]++;
+  int n=size(nums);
+        int ans=0;
+        for(int i=0;i<n;i++){
+            ans^=i;
+            ans^=nums[i];
         }
-        for(int i=0;i<=n;i++){
-            if(mp[i] == 0){
-                return i;
-            }
-        }
-        return -1;
+        return ans^n;
     }
 };
