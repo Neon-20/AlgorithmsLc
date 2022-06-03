@@ -1,16 +1,20 @@
 class NumArray {
 public:
     // vector<int> ;
-    NumArray(vector<int>& nums) :psum(size(nums)+1,0) {
-        partial_sum(nums.begin(),nums.end(),psum.begin()+1);
-        
+    NumArray(vector<int>& nums)  {
+        // partial_sum(nums.begin(),nums.end(),psum.begin()+1);
+        ans=nums;
+        for(int i=1;i<size(nums);i++){
+            ans[i]=nums[i]+ans[i-1];
+        }
     }
     
     int sumRange(int left, int right) {
-        return psum[right+1]-psum[left];
+       if(left==0) return ans[right];
+        return ans[right]-ans[left-1];
     }
     private:
-    vector<int> psum;
+    vector<int> ans;
 };
 
 /**
