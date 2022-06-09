@@ -2,17 +2,19 @@ class Solution:
     def clumsy(self, n: int) -> int:
         if(n == 1):
             return 1
-        if(n == 2):
+        elif (n == 2):
             return 2
-        if(n == 3):
+        elif(n == 3):
             return 6
-        if(n == 4):
+        elif(n == 4):
             return 7
-        if(n%4==1):
+        elif(n%4==1):
             return n+2
-        if(n%4==2):
+        elif(n%4==2):
             return n+2
-        if(n%4==3):
+        elif(n%4==3):
             return n-1
         return n+1
+#     tc->o(1)
+
         
