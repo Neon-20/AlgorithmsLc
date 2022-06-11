@@ -2,27 +2,29 @@ class Solution {
 public:
     bool isPossible(vector<int>& nums) {
         int n=nums.size();
-        //2 maps solution
-     map<int,int> cnt;
-     map<int,int> need;
-     for(int x:nums){
-         cnt[x]++;
+        map<int,int> cnt;
+        map<int,int> sub;
+        //count the frequencies
+        for(int x:nums) cnt[x]++;
+        //Now check whether
+        //If count already part of a valid subsequence
+        for(auto x:nums){
+            if(cnt[x] == 0) {
+                continue;
+            }
+            if(sub[x-1]>0){//agar last element num-1 se exist                            //krega tab ki baat hai
+                sub[x-1]--;
+                sub[x]++;
+            }
+            //start a new subsequence
+            else if(cnt[x+1]>0 and cnt[x+2]>0){
+                sub[x+2]++;//last element added
+                cnt[x+1]--;
+                cnt[x+2]--;
+            }
+           else return false;
+           cnt[x]--;
         }
-      for(auto x:nums){
-          if(!cnt[x]) continue;
-          else if(need[x]>0){
-              need[x+1]++;
-              need[x]--;
-              cnt[x]--;
-          }
-          else if(cnt[x+1]>0 and cnt[x+2]>0){
-              cnt[x]--;
-              cnt[x+1]--;
-              cnt[x+2]--;
-              need[x+3]++;
-          }
-          else return false;
-      }
         return true;
     }
 };
