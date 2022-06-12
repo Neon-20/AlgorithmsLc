@@ -1,28 +1,26 @@
 class Solution {
 public:
     int maximumUniqueSubarray(vector<int>& nums) {
-        // int n=nums.size();
-        //maximum erasure value
-        //erase exactly one subarray
-        //max sum subarray with uniqueness
-        set<int> s;
-       int l=0;
-        int r=0;
+    //set always
         int n=size(nums);
-        int current=0,msum=0;
-       while(l<n and r<n){
-           if(!s.count(nums[r])){
-               s.insert(nums[r]);
-               current+=nums[r];
-               msum=max(msum,current);
-               r++;
-           }
-           else{
-               current-=nums[l];
-               s.erase(nums[l]);
-               l++;
-           }
-       }
-        return msum;
+        set<int> s;
+        int i=0;
+        int j=0;
+        int current_sum=0;
+        int mx_sum=0;
+        while(i<n and j<n){
+            if(!s.count(nums[j])){
+                s.insert(nums[j]);
+                current_sum+=nums[j];
+                mx_sum=max(mx_sum,current_sum);
+                j++;
+            }
+            else{
+                current_sum-=nums[i];
+                s.erase(nums[i]);
+                i++;
+            }
+        }
+        return mx_sum;
     }
 };
