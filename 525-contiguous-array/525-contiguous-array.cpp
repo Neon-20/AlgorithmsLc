@@ -11,7 +11,7 @@ public:
             if(mp.count(pref)){
                 ans=max(ans,i-mp[pref]+1);
             }
-            else mp[pref]=i+1;
+             else mp[pref]=i+1;
         }
         return ans;
     }
