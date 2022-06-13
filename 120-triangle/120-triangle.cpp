@@ -1,19 +1,16 @@
 class Solution {
 public:
+    int dp[205][205];//top down approach
+    int helper(int i,int j,vector<vector<int>> &nums){
+        if(i>=nums.size()) return 0;
+        if(dp[i][j]!=-1) return dp[i][j];
+        int ans=0;
+        ans=nums[i][j]+min(helper(i+1,j,nums),helper(i+1,j+1,nums));
+        dp[i][j]=ans;
+        return ans;
+    }
     int minimumTotal(vector<vector<int>>& nums) {
-        // bottom up approach goes like this
-        int n=nums.size();
-        vector<int> last(n,-1);
-        for(int i=0;i<n;i++){
-            last[i]=nums[n-1][i];
-        }
-        for(int row=n-2;row>=0;row--){
-            vector<int> current(row+1);
-            for(int col=0;col<=row;col++){
-                current[col]=min(last[col],last[col+1])+nums[row][col];
-            }
-            last=current;
-        }
-        return last[0];
+        memset(dp,-1,sizeof(dp));
+        return helper(0,0,nums);
     }
 };
