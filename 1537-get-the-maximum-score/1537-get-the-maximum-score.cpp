@@ -37,7 +37,7 @@ public:
             b_sum+=b[j];
             j++;
         }
-       ans=(ans+max(a_sum,b_sum))%mod;
+        ans=(ans+max(a_sum,b_sum))%mod;
         return ans;
     }
 };
