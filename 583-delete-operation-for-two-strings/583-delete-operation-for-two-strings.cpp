@@ -1,6 +1,7 @@
 class Solution {
 public:
-    int dp[505][505];
+    // int dp[505][505];
+    vector<vector<int>> dp;
     int helper(int i,int j,string &s,string &t){
      if(i >= size(s) or j>=size(t)) return 0;//base case
      if(dp[i][j]!=-1) return dp[i][j];
@@ -18,7 +19,7 @@ ans=max(helper(i,j+1,s,t),helper(i+1,j,s,t));
     int minDistance(string a, string b) {
        int x=a.size();
        int y=b.size();
-        memset(dp,-1,sizeof(dp));
+        dp.resize(x+1,vector<int>(y+1,-1));
         return (x+y) - 2*helper(0,0,a,b);
     }
     
