@@ -1,25 +1,25 @@
 class Solution {
 public:
-    int longest_sub(string &a,string &b){
-           int m=a.size();
-        int n=b.size();
-    vector<vector<int>> dp(m+1,vector<int>(n+1,0));
-    for(int i=1;i<=m;i++){
-        for(int j=1;j<=n;j++){
-            if(a[i-1] == b[j-1]){
-                dp[i][j]=1+dp[i-1][j-1];
-            }
-            else{
-         dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
-            }
+    int dp[505][505];
+    int helper(int i,int j,string &s,string &t){
+     if(i >= size(s) or j>=size(t)) return 0;//base case
+     if(dp[i][j]!=-1) return dp[i][j];
+     int ans=0;
+     if(s[i] == t[j]){
+        ans=1+helper(i+1,j+1,s,t);
+     }   
+        else{
+ans=max(helper(i,j+1,s,t),helper(i+1,j,s,t));
         }
-    }  
-    return dp[m][n];  
-    }
+     dp[i][j]=ans;//memoization
+     return ans;
+     
+ }
     int minDistance(string a, string b) {
        int x=a.size();
        int y=b.size();
-        return x+y - 2*longest_sub(a,b);
+        memset(dp,-1,sizeof(dp));
+        return (x+y) - 2*helper(0,0,a,b);
     }
     
 };
