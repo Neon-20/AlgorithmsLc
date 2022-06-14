@@ -1,19 +1,19 @@
 class Solution {
 public:
- 
-    int longestCommonSubsequence(string s, string t) {
-    vector<vector<int>> dp(size(s)+1,vector<int>(size(t)+1,0));
+    // ......_......
+ int helper(int i,int j,string &s,string &t,vector<vector<int>>&dp){
+     if(i >= size(s) or j>=size(t)) return 0;//base case
+     if(dp[i][j]!=-1) return dp[i][j];
+     if(s[i] == t[j]){
+         return dp[i][j]=1+helper(i+1,j+1,s,t,dp);
+     }   
+        else{
+return dp[i][j]=max(helper(i,j+1,s,t,dp),helper(i+1,j,s,t,dp));
+        }
      
-        for(int i=1;i<=size(s);i++){
-            for(int j=1;j<=size(t);j++){
-        if(s[i-1] == t[j-1]){
-            dp[i][j]=1+dp[i-1][j-1];
-        }
-          else{
-            dp[i][j]=max(dp[i][j-1],dp[i-1][j]);   
-          }
-            }
-        }
-        return dp[size(s)][size(t)];
+ }
+    int longestCommonSubsequence(string s, string t) {
+    vector<vector<int>> dp(size(s)+1,vector<int>(size(t)+1,-1));
+        return helper(0,0,s,t,dp);
     }   
 };
