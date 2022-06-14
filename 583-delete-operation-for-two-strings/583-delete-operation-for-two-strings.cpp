@@ -3,10 +3,7 @@ public:
     int longest_sub(string &a,string &b){
            int m=a.size();
         int n=b.size();
-        //longest common subsequence
     vector<vector<int>> dp(m+1,vector<int>(n+1,0));
-    // For longest common subs
-    // dp[0][0]=1;
     for(int i=1;i<=m;i++){
         for(int j=1;j<=n;j++){
             if(a[i-1] == b[j-1]){
