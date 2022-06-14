@@ -2,9 +2,8 @@ class Solution {
 public:
  
     int longestCommonSubsequence(string s, string t) {
-      vector<vector<int>> dp;
-        dp.resize(s.size()+1,vector<int>(t.size()+1,0));
-        
+    vector<vector<int>> dp(size(s)+1,vector<int>(size(t)+1,0));
+     
         for(int i=1;i<=size(s);i++){
             for(int j=1;j<=size(t);j++){
         if(s[i-1] == t[j-1]){
