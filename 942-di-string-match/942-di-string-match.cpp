@@ -14,7 +14,7 @@ public:
                 ans.push_back(j);
                 j--;
             }
-        }
+        } // 0 4 1 3 
         if(s[s.size()-1] == 'I'){
             ans.push_back(i);
         }
