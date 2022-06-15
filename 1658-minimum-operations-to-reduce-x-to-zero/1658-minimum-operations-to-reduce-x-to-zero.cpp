@@ -6,7 +6,7 @@ public:
         //total-x k barabar ya bada
         int sum=0;
         int right=0;
-        int len=-1;
+        int len=INT_MIN;
         int total=accumulate(begin(nums),end(nums),0);
         if(total<x) return -1;
         for(int i=0;i<n;i++){
@@ -18,7 +18,7 @@ public:
                 len=max(len,i-right+1);
             }
         }
-               if(len == -1) return -1;
+               if(len == INT_MIN) return -1;
                else return n-len;
     } 
 };
