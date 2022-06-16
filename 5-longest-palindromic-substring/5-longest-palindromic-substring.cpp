@@ -1,36 +1,32 @@
 class Solution {
 public:
- 
+ string get_pal(string s,int left,int right){
+     int n=s.length();
+     while(left>=0 and right<n){
+         if(s[left]!=s[right]){
+             break;
+         }
+         left--;
+         right++;
+     }
+     return s.substr(left+1,right-left-1);
+ }
     string longestPalindrome(string s) {
-      int n=s.length();
-        //If smaller interval is a pallindrome then
-        // we can expand nicely
-        vector<vector<int>> dp(n,vector<int>(n));
-        int longest=INT_MIN;
-        int end=-1;
-        int start=-1;
-        for(int i=n-1;i>=0;i--){
-            for(int j=i;j<n;j++){
-                if(s[i] == s[j]){
-                    if(i == j){
-                        dp[i][j]=1;
-                    }
-                    else if(j == i+1){
-                        dp[i][j]=2;
-                    }
-      else if(i+1<n and j-1>=i and dp[i+1][j-1]>0){
-          dp[i][j]=dp[i+1][j-1]+2;
-      }
-                }
-                if(dp[i][j]>longest){
-                    longest=dp[i][j];
-                    start=i;
-                    end=j;
-                }
-            }
+     int n=s.length();
+        //Now we can do a two pointer approach
+        //Center se checking kr rha hu
+        if(s.empty()) return 0;
+        string longest;
+        for(int i=0;i<n;i++){
+            string odd=get_pal(s,i,i);
+            if(odd.length()>longest.length())
+                longest=odd;
         }
-        
-        return s.substr(start,end-start+1);
-        
+        for(int i=0;i<n;i++){
+            string even=get_pal(s,i,i+1);
+            if(even.length()>longest.length())
+                longest=even;
+        }
+        return longest;
     }
 };
