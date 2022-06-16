@@ -15,7 +15,7 @@ public:
      int n=s.length();
         //Now we can do a two pointer approach
         //Center se checking kr rha hu
-        if(s.empty()) return 0;
+        // if(s.empty()) return 0;
         string longest;
         for(int i=0;i<n;i++){
             string odd=get_pal(s,i,i);
