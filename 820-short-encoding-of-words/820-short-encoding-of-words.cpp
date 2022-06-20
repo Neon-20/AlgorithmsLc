@@ -1,22 +1,20 @@
+bool compare( string& a, string& b){
+        return a.length()>b.length();
+    }
 class Solution {
 public:
-    class TrieNode {
-public:
-    unordered_map<char, TrieNode *> next;
-};
-    int minimumLengthEncoding(vector<string>& words) {
-        TrieNode *root = new TrieNode;
-        vector<pair<TrieNode *, int>> leaves;
-        for (auto & w : unordered_set<string> (words.begin(), words.end())) {
-            TrieNode *cur = root;
-            for (int i = w.length() - 1; i >= 0; --i) {
-                if (cur->next.count(w[i]) == 0) cur->next[w[i]] = new TrieNode;
-                cur = cur->next[w[i]];
-            }
-            leaves.push_back(make_pair(cur, w.length() + 1));
+    
+  int minimumLengthEncoding(vector<string>& words) {
+       int n=words.size();
+        sort(begin(words),end(words),compare);
+        string ans="";
+        ans=ans+words[0]+'#';
+        for(int i=1;i<words.size();i++){
+     int pos=ans.find(words[i]+"#");
+                if(pos!=-1) continue;
+            else ans+=words[i]+"#";
         }
-        int res = 0;
-        for (auto leaf : leaves) if ((leaf.first->next).size() == 0) res += leaf.second;
-        return res;
+      return ans.size();
+      
     }
 };
