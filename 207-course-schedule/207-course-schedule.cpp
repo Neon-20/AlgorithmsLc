@@ -1,28 +1,29 @@
 class Solution {
 public:
-   bool check(vector<int> graph[],vector<int> &vis,int i)
-   {
-       if(vis[i] == 1) return true;
-       if(vis[i] == 0){
-           vis[i]=1;
-           for(auto edge:graph[i]){
-               if(check(graph,vis,edge))
-                   return true;
-           }
-       }
-       vis[i]=2;
-       return false;
-   }
-    bool canFinish(int n, vector<vector<int>>& graph) {
-        vector<int> adj[n];
-        for(auto edge:graph){
-            adj[edge[1]].push_back(edge[0]);
+  
+    bool canFinish(int n, vector<vector<int>>& nums) {
+       vector<int> graph[n];
+        vector<int> indegree(n);
+        for(auto edge:nums){
+            graph[edge[1]].push_back(edge[0]);
+            indegree[edge[0]]++;
         }
-        vector<int> visited(n,0);
-        for(int i=0;i<n;i++){
-            if(check(adj,visited,i))
-                return false;
+        queue<int> q;
+        for(int i=0;i<n;i++)
+            if(indegree[i] == 0) q.push(i);
+        //pushed in queue with indegree q
+        vector<int> ans;
+        while(!q.empty()){
+            auto x=q.front();q.pop();
+            ans.push_back(x);
+            for(auto val:graph[x]){
+                if(--indegree[val] == 0){
+                    q.push(val);
+                }
+            }
         }
-        return true;
+        if(size(ans) == n) return true;
+        return false;
+        
     }
 };
