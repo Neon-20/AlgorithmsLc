@@ -2,17 +2,18 @@ class Solution {
 public:
 const int mod=1e9+7;
     int numberOfUniqueGoodSubsequences(string s) {
-        int dp[2][2]={};
-        for(char c:s){
-            int a=c-'0';
-            if(a == 0){
-                dp[0][0]=1;
-                dp[1][0]=(dp[1][0]+dp[1][1])%mod;
+       int ends1=0;
+       int ends0=0;
+       int has0=0;
+        for(int i=0;i<s.length();i++){
+            if(s[i] == '1'){
+                ends1=(ends1+ends0+1)%mod;
             }
             else{
-                dp[1][1]=(dp[1][0]+dp[1][1]+1)%mod;
+                ends0=(ends0+ends1)%mod;
+                has0=1;
             }
         }
-        return (dp[0][0]+dp[1][0]+dp[0][1]+dp[1][1])%mod;
+          return (ends1+ends0+has0)%mod;
     }
 };
