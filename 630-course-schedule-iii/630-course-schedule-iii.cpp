@@ -19,26 +19,22 @@
 #define bpc(a)           __builtin_popcountll(a)
 class Solution {
 public:
-
-    
     int scheduleCourse(vector<vector<int>>& nums) {
-        int n=nums.size();
-        //max number of courses u can take
-       //just the intersection of terms and services
-        sort(all(nums),[&](vector<int> &a,vector<int> &b){
-          return a[1]<b[1];  
-        });
+       //max number of courses that i can take
+        int n=sz(nums);
         priority_queue<int> pq;
+        sort(all(nums),[&](vector<int> &a,vector<int> &b){
+           return a[1]<b[1]; 
+        });//2nd param sorted
         int time=0;
-        for(auto x:nums){
-            time+=x[0];
-            pq.push(x[0]);
-            if(time>x[1]){
-                time-=pq.top();
-                pq.pop();
-            }
-            // pq.push(x[0]);
-        }
+      for(auto x:nums){
+          time+=x[0];
+          pq.push(x[0]);
+          if(time>x[1]){
+              time-=pq.top();
+              pq.pop();
+          }
+      }
         return sz(pq);
     }
 };
