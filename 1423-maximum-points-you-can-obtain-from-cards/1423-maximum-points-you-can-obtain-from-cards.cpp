@@ -12,11 +12,10 @@ public:
         }
         int ans=INT_MIN;
         reverse(begin(suffix),end(suffix));
-        
-        for(int i=0;i<=k;i++)
-        {
+        for(int i=0;i<=k;i++){
             ans=max(ans,suffix[i]+prefix[k-i]);
         }
         return ans;
+        
     }
 };
