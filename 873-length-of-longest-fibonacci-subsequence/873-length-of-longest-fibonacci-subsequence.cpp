@@ -4,7 +4,7 @@ public:
         int n=nums.size();
         // longest subsequence
         // 2 ka sum a[i] hona chahiye
-        set<int> s(begin(nums),end(nums));
+        unordered_set<int> s(begin(nums),end(nums));
         int cnt=0;
         int len=INT_MIN;
         for(int i=0;i<n;i++){
