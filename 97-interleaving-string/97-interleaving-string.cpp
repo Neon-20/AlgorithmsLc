@@ -1,8 +1,7 @@
 class Solution {
 public:
     int dp[1005][1005];
-    int helper(string &s1,string &s2,string &s3,int i,int j,
-              int k){
+    int helper(string &s1,string &s2,string &s3,int i,int j, int k){
     if(i == size(s1) and j==size(s2) and k==size(s3))
         return true;
     if(k==size(s3)) return false;
