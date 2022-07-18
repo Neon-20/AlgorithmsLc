@@ -1,7 +1,6 @@
 class Solution {
 public:
-    
-     int result=0,target;
+    int result=0,target;
     unordered_map<int,int> map;
     void get_result(vector<int>& nums)                          //Get number of subarrays that sum to target.
     {
