@@ -12,7 +12,7 @@ public:
                 ans[even]=x;
                 even+=2;
             }
-            if(x%2){
+           else{
                 ans[odd]=x;
                 odd+=2;
             }
