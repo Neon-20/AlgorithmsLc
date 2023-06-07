@@ -1,2 +1,2 @@
-# Leetcode
-This is a repository where I will be maintaining problems solved by me on Leetcode. 
+# Alogorithms
+This is a repository where I will be maintaining Algorithmic-Problems solved by me. 
