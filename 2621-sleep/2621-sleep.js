@@ -3,9 +3,11 @@
  */
  //Write a function which sleeps for certain amount of time.
 async function sleep(millis) {
-  await new Promise(resolve=>{
-      setTimeout(resolve,millis)
-  })
+ return new Promise (function(resolve){
+        setTimeout(()=>{
+            resolve();
+        },millis)
+    })
 }
 
 
