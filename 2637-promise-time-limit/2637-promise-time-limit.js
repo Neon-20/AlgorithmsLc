@@ -4,14 +4,13 @@
  * @return {Function}
  */
 var timeLimit = function(fn, t) {
-	return async function(...args) {
-     const oldPromise = fn(...args)
-     const newPromise =  new Promise((resolve,reject)=>{
-           setTimeout(()=>{
-              reject("Time Limit Exceeded")
-           },t)
-       })
-    return Promise.race([oldPromise,newPromise])
+	return async function(...args){
+        return new Promise(function(resolve,reject){
+            setTimeout(()=>{
+                reject("Time Limit Exceeded")
+            },t)
+           return fn(...args).then(resolve).catch(reject)
+        })
     }
 };
 
