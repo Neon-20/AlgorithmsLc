@@ -6,7 +6,9 @@
  */
 function cancellable(fn,args,t){
     let timer;
-    const cancelFn = () => clearTimeout(timer);
+   function cancelFn(){
+       clearTimeout(timer)
+   };
     timer = setTimeout(()=>fn(...args),t)
     return cancelFn;
 }
