@@ -1,29 +1,32 @@
 class EventEmitter {
-     mp=new Map();
+mp=new Map();
   subscribe(event, cb) {
-     if(!this.mp.has(event)){
-         this.mp.set(event,[]);
-     }
-      let callBackList = this.mp.get(event);
-      callBackList.push(cb);
-      this.mp.set(event,callBackList);
+    if(!this.mp.has(event)){
+        this.mp.set(event,[]);
+    }
+      //agr hai tab
+      let callbackList = this.mp.get(event);
+      callbackList.push(cb);
+      this.mp.set(event,callbackList);
     return {
         unsubscribe: () => {
-          let arr = this.mp.get(event);
-          let position = arr.findIndex(cb)
-          arr.splice(position,1);
-          this.mp.set(event,arr);
+         //remove
+           let arr = this.mp.get(event);
+           let position = arr.findIndex(cb);
+            arr.splice(position,1);
+            this.mp.set(event,arr);
         }
     };
   }
 
   emit(event, args = []) {
-    let ans = this.mp.get(event)
-    if(ans == null){
-        ans=[];
-    }
+    let ans = this.mp.get(event);
+      if(ans == null){
+          return ans=[];
+      }
+      //return the emit
       return ans.map((fn)=>{
-          return fn(...args);
+          return fn(...args)
       })
   }
 }
