@@ -10,11 +10,11 @@ public:
         if(i>=n) return 0;
         while(i<n){
             if(nums[i]==1){
-                ans=(ans*(cnt+1))%mod;
-                cnt=0;
+                ans=(ans*(cnt+1))%mod;// 1
+                cnt=0;// 0 
             }
             else{
-                cnt++;
+                cnt++;// 2
             }
             i++;
         }
