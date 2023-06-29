@@ -2,12 +2,12 @@
  * @param {Function} fn
  * @return {Array}
  */
-Array.prototype.groupBy = function(x){
+Array.prototype.groupBy = function(fn){
     const ans = {};
-    for(let e of this){// e is value then
-        const key = x((e));
+    for(let x of this){
+        const key = fn(x);
         ans[key] ||= [];
-        ans[key].push(e);
+        ans[key].push(x);
     }
     return ans;
 }
