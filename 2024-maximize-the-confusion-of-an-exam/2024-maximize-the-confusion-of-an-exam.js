@@ -4,17 +4,16 @@
  * @return {number}
  */
 
-function cnt(nums,k,c){
-  let count=0;
-    let ans=0;
-    let i=0;
-  for(let j=0;j<nums.length;j++){
-      count+=nums[j]==c;
-      while(count>k) count-=nums[i++]==c;
-      ans=Math.max(ans,j-i+1);
-  }
+function maxConsecutiveAnswers(nums,k){
+ let n = nums.length;
+ let t=0,f=0;
+    let j=0;let ans=0;
+    for(let i=0;i<n;i++){
+        nums[i]=='T'?t++:f++;
+        if(Math.min(f,t)<=k) ans++;
+        else nums[j++]=='T'?t--:f--;
+    }
     return ans;
 }
-function maxConsecutiveAnswers(nums,k){
-    return Math.max(cnt(nums,k,'T'),cnt(nums,k,'F'))
-}
+
+// TTFF
