@@ -4,7 +4,7 @@ impl Solution {
       for i in 0..n{
           nums.push(nums[i]);
         }
-        return nums
+       return nums;
     }
 }
 // data types in rust
