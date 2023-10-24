@@ -12,29 +12,28 @@
 class Solution {
 public:
     vector<int> largestValues(TreeNode* root) {
-//         Largest value in each row
-        vector<int> ans;
-        if(root == nullptr) return ans;
-        queue<TreeNode*> q;
+      vector<int> ans;
+      if(root == nullptr) return ans;
+      queue<TreeNode*> q;
         q.push(root);
         while(!q.empty()){
-            int sz = q.size();
+        int sz = q.size();
             int mx = INT_MIN;
             while(sz--){
-                TreeNode* temp = q.front();
+             TreeNode* temp = q.front();
                 q.pop();
-                if(temp->left!=nullptr){
+                if(temp->left != nullptr){
                     q.push(temp->left);
                 }
-                if(temp->right!=nullptr){
+                if(temp->right != nullptr){
                     q.push(temp->right);
                 }
-                mx = max(mx,temp->val);
+              mx=max(mx,temp->val);
             }
             ans.push_back(mx);
         }
-            return ans;
-        }
+        return ans;
+    }
 };
 
 
