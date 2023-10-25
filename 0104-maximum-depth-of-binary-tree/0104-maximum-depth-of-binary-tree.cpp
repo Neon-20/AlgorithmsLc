@@ -12,9 +12,26 @@
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-       //recursive dfs
-       if(root==nullptr) return 0;
-        return max(maxDepth(root->left)+1,maxDepth(root->right)+1);
+       //using bfs we have as
+        if(!root) return 0;
+        queue<TreeNode*> q;
+        q.push(root);
+        int depth = 0;
+        while(!q.empty()){
+            ++depth;
+            int sz = q.size();
+            for(int i=0;i<sz;i++){
+            TreeNode* node = q.front(); 
+            q.pop();
+            if(node->left!=nullptr){
+                q.push(node->left);
+            }
+            if(node->right!=nullptr){
+                q.push(node->right);
+            }
+        }
+        }
+        return depth;
     }
 };
 
