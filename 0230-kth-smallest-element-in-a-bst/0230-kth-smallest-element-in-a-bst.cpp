@@ -12,15 +12,15 @@
 //preorder = root -> left -> right
 class Solution {
 public:
-    void preOrder(TreeNode* node,vector<int>& ans){
+    vector<int> ans;
+    void preOrder(TreeNode* node){
         if(!node) return;
         ans.push_back(node->val);
-        preOrder(node->left,ans);
-        preOrder(node->right,ans);
+        preOrder(node->left);
+        preOrder(node->right);
     }
     int kthSmallest(TreeNode* root, int k) {
-       vector<int> ans;
-       preOrder(root,ans);
+       preOrder(root);
        sort(begin(ans),end(ans));
        return ans[k-1];
     }
