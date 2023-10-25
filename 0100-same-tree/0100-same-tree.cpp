@@ -12,11 +12,10 @@
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        //level wise traversal
         if(p==0 or q==0) return (p==0 and q==0);
         if(p->val == q->val){
-    return isSameTree(p->left,q->left) and  
-        isSameTree(p->right,q->right);
+        return isSameTree(p->left,q->left) and 
+             isSameTree(p->right,q->right);
         }
         return false;
     }
