@@ -12,20 +12,19 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-//         level order traversal is a bfs
         if(!root) return {};
-        queue<TreeNode*>q;
+     vector<vector<int>> ans;
+        queue<TreeNode*> q;
         q.push(root);
-        vector<vector<int>> ans;
         while(!q.empty()){
             int sz = q.size();
             vector<int> current;
             for(int i=0;i<sz;i++){
                 TreeNode* node = q.front();
                 q.pop();
-                if(node->left!=nullptr) q.push(node->left);
-                if(node->right!=nullptr) q.push(node->right);
                 current.push_back(node->val);
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
             }
             ans.push_back(current);
         }
