@@ -12,19 +12,23 @@
 //preorder = root -> left -> right
 class Solution {
 public:
-   vector<int> ans;
-    void preorder(TreeNode* node,int k){
-        if(!node) return;
-        ans.push_back(node->val);
-        preorder(node->left,k);
-        preorder(node->right,k);
-    }
-    int kthSmallest(TreeNode* root, int k) {
+  
+int kthSmallest(TreeNode* root, int k) {
     if(!root) return {};
-    preorder(root,k);
-    sort(begin(ans),end(ans));
-        return ans[k-1];
+    queue<TreeNode*> q;
+    q.push(root);
+    priority_queue<int> pq;
+    while(!q.empty()){
+        TreeNode* node = q.front();
+        q.pop();
+        pq.push(node->val);
+        if(pq.size()>k)pq.pop();
+        if(node->left) q.push(node->left);
+        if(node->right) q.push(node->right);
     }
+    return pq.top();
+}
+    
 };
 
 
