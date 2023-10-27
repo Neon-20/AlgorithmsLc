@@ -20,6 +20,7 @@ public:
         int rightMax = max(0,right);
 //         with split
         ans = max(ans,leftMax+rightMax+node->val);
+        // without split
         return max(0,max(left,right)+node->val);
     }
     
