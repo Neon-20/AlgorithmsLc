@@ -12,22 +12,16 @@
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        //invert a binary tree
-        if(root == nullptr){
-            return nullptr;
-        }
-        queue<TreeNode*>q;
+     //levelwise invert the tree
+        if(!root) return {};
+        queue<TreeNode*> q;
         q.push(root);
         while(!q.empty()){
-            TreeNode* node = q.front();
-            q.pop();
-            if(node->left!=nullptr){
-                q.push(node->left);
-            }
-            if(node->right!=nullptr){
-                q.push(node->right);
-            }
-            TreeNode* temp = node->left;
+          TreeNode* node = q.front();
+          q.pop();
+          if(node->left) q.push(node->left);
+          if(node->right) q.push(node->right);
+          TreeNode* temp = node->left;
             node->left = node->right;
             node->right = temp;
         }
