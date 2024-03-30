@@ -10,6 +10,7 @@ public:
                 x|=nums[j];
                 if(x>=k){
                     ans = min(ans,j-i+1);
+                    break;
                 }
             }
         }
