@@ -11,7 +11,7 @@ public:
         unordered_map<int,int> mp;
         vector<pair<int,int>> time(q);
         for(int i=0;i<q;i++){
-            time[i]={queries[i],i};
+            time.push_back({queries[i],i});
         }
         sort(time.begin(),time.end());
         //apply sliding window now
@@ -20,7 +20,7 @@ public:
             int currentTime = tm.first;
             int idx = tm.second;
             
-            int start = max(0,currentTime - x);
+            int start = currentTime - x;
             int end = currentTime;
             
             while(j<m and vp[j].first<=end){
