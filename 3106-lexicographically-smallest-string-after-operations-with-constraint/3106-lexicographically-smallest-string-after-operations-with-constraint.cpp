@@ -1,8 +1,8 @@
 class Solution {
 public:
     string getSmallestString(string s, int k) {
-       string ans;
-       //for every letter we can do something
+        //the inner loop breaks out when we check for each character
+        string ans;
         for(char c:s){
             for(int i=0;i<26;i++){
                 int d = abs(c-'a'-i);
@@ -12,11 +12,8 @@ public:
                     k-=d;
                     break;
                 }
-            }
+             }
         }
         return ans;
     }
 };
-//distance(s,t) <= k
-
-
