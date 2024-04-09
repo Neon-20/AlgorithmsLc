@@ -1,18 +1,17 @@
 class Solution {
 public:
     string getSmallestString(string s, int k) {
-        //the inner loop breaks out when we check for each character
         string ans;
         for(char c:s){
             for(int i=0;i<26;i++){
-                int d = abs(c-'a'-i);
-                d = min(d,26-d);
-                if(d<=k){
+                int diff = abs(c-'a'-i);
+                diff = min(diff,26-diff);
+                if(diff<=k){
                     ans+=char('a'+i);
-                    k-=d;
+                    k-=diff;
                     break;
                 }
-             }
+            }
         }
         return ans;
     }
