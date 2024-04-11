@@ -1,27 +1,29 @@
 class Solution {
 public:
-    vector<vector<int>> adj;
-    long long helper(int node,int parent,vector<int> &values){
-        if(adj[node].size()==1 and node!=0) return values[node];
-        long long sum = 0;
+    long long helper(int node,vector<int> &vis,vector<vector<int>> &adj,vector<int> &values){
+        vis[node] = 1;
+        //traversing the neighbours
+        long long childSum = 0;
         for(auto &x:adj[node]){
-            if(x==parent) continue;
-            sum+=helper(x,node,values);
+            if(!vis[x]) childSum+=helper(x,vis,adj,values);
         }
-       return min(sum,1ll*values[node]);
-    }
+        if(childSum == 0)
+            return 1ll*values[node];
+        return min(childSum,1ll*values[node]);
+}
     long long maximumScoreAfterOperations(vector<vector<int>>& edges, vector<int>& values) {
-        //total - min = max
-        int n =values.size();
-        adj.resize(n);
+        //total - min
+        int n = values.size();
+        vector<vector<int>> adj(n);
         for(auto &x:edges){
             adj[x[0]].push_back(x[1]);
             adj[x[1]].push_back(x[0]);
-        }//stored in adjacency list undirected graph
-        long long ans = 0;
-        for(int i=0;i<n;i++){
-            ans+=values[i];
         }
-        return ans - helper(0,-1,values);
+        long long sum = 0;
+        for(int i=0;i<n;i++){
+            sum+=values[i];
+        }
+       vector<int> vis(n,0);
+       return sum - helper(0,vis,adj,values); 
     }
 };
