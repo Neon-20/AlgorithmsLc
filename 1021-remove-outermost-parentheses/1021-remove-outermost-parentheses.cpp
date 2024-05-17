@@ -11,3 +11,7 @@ public:
         return ans;
     }
 };
+// opened = 1
+// opened = 2
+// opened = 0
+
