@@ -2,13 +2,14 @@ class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
         int n = strs.size();
-        string prefix = strs[0];
+        //jo bhi letters exist krega others me bhi that is answer
+        string prev = strs[0];
         for(int i=1;i<n;i++){
-            while(strs[i].find(prefix)!=0){
-                prefix = prefix.substr(0,prefix.length()-1);
-                if(prefix.length()==0) return "";
+            while(strs[i].find(prev)!=0){
+                prev = prev.substr(0,prev.length()-1);
+                if(prev.length() == 0) return "";
             }
         }
-        return prefix;
+        return prev;
     }
 };
